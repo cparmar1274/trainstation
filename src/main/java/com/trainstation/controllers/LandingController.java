@@ -27,10 +27,20 @@ public class LandingController {
 		trainStationService.readCSVFileToUpdateStationList();
 		return new ModelAndView("landing");
 	}
-	
+		
 	@GetMapping("/stations")
 	public @ResponseBody List<TrainStation> getStationList(@RequestParam("size") int pageSize,@RequestParam("number") int pageNumber) throws IOException {
 		return trainStationService.getStationList(pageSize,pageNumber);
+	}
+	
+	@GetMapping("/tablePage")
+	public ModelAndView getTablePage(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		return new ModelAndView("tablepage");
+	}
+	
+	@GetMapping("/detailPage")
+	public ModelAndView getDetailPage(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		return new ModelAndView("detailpage");
 	}
 
 	
