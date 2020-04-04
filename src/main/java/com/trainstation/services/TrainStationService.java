@@ -16,8 +16,10 @@ public class TrainStationService {
 
 	public List<TrainStation> trainStationDetails = new ArrayList<>();
 
-	public List<TrainStation> getStationList(int pageSize, int startIndex, int pageNumber) {
-		return trainStationDetails;
+	public List<TrainStation> getStationList(int pageSize,int pageNumber) {
+		int start = pageSize*pageNumber;
+	    int end = start + pageSize;
+		return trainStationDetails.subList(start>trainStationDetails.size()?trainStationDetails.size():start, end>trainStationDetails.size()?trainStationDetails.size():end);
 	}
 
 	public boolean readCSVFileToUpdateStationList() throws IOException {

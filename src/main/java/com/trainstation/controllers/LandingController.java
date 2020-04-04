@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,8 +29,8 @@ public class LandingController {
 	}
 	
 	@GetMapping("/stations")
-	public @ResponseBody List<TrainStation> getStationList(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		return trainStationService.getStationList(10, 1, 1);
+	public @ResponseBody List<TrainStation> getStationList(@RequestParam("size") int pageSize,@RequestParam("number") int pageNumber) throws IOException {
+		return trainStationService.getStationList(pageSize,pageNumber);
 	}
 
 	
