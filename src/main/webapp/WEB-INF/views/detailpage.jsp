@@ -1,9 +1,9 @@
-<div ng-controller="DetailCtrl as main">
+<div style="margin-top:5%" ng-controller="DetailCtrl as main">
 	<h4>Showing details for <span ng-bind="main.stationName"></span> </h4>
 	<span>Go back to <a href="#!">Station List</a></span>
 	<hr>
 	<div ng-init="main.load()">
-	    <span>total {{main.stations.length}} record(s) found</span><br>
+	    <span class="pull-right">total {{main.stations.length}} record(s) found</span><hr>
 		<div ng-repeat="station in main.stations">
 			<table>
 			 <tr>

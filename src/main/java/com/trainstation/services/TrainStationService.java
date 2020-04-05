@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -18,6 +20,8 @@ import com.trainstation.utility.TSUtil;
 
 @Service
 public class TrainStationService {
+
+	Logger logger = LogManager.getLogger(TrainStationService.class);
 
 	public List<TrainStation> trainStationDetails = new ArrayList<>();
 
@@ -51,23 +55,37 @@ public class TrainStationService {
 		return data;
 	}
 
-	public boolean readCSVFileToUpdateStationList() throws IOException {
-		LineIterator lineIterator = FileUtils.lineIterator(new File("src/main/resources/eng-climate-summary.csv"));
-		trainStationDetails.clear();
-		String[] lineText = null, temp = null;
-		lineIterator.next();
-		while (lineIterator.hasNext()) {
-			temp = new String[6];
-			lineText = lineIterator.next().split(",");
-			for (int i = 0; i < lineText.length; i++) {
-				temp[i] = lineText[i];
+	public boolean readCSVFileToUpdateStationList() {
+		LineIterator lineIterator;
+		try {
+			logger.info("Processing csv file to fetch trainstaion details");
+			lineIterator = FileUtils.lineIterator(new File("src/main/resources/eng-climate-summary.csv"));
+
+			trainStationDetails.clear();
+			String[] lineText = null, temp = null;
+			lineIterator.next();
+			while (lineIterator.hasNext()) {
+				temp = new String[6];
+				lineText = lineIterator.next().split(",");
+				for (int i = 0; i < lineText.length; i++) {
+					temp[i] = lineText[i];
+				}
+				trainStationDetails.add(new TrainStation(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]));
 			}
-			trainStationDetails.add(new TrainStation(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]));
+			logger.info("Processing csv file completed. total {} records processed.", trainStationDetails.size());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("I/O Error while reading .csv file from resources folder. {}", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Error while reading .csv file from resources folder. {}", e.getMessage());
 		}
 		return true;
 	}
 
 	public List<TrainStation> getStationDetail(String stationName) {
+		logger.info("sending {} details", stationName);
 		return trainStationDetails.stream()
 				.filter(trainStation -> trainStation.getStationName().equalsIgnoreCase(stationName))
 				.collect(Collectors.toList());

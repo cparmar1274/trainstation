@@ -9,6 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan(basePackages = {"com.trainstation.controllers","com.trainstation.services"})
 public class TrainStationConfiguration implements WebMvcConfigurer {
+	
 
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -17,5 +18,7 @@ public class TrainStationConfiguration implements WebMvcConfigurer {
 		resolver.setSuffix(".jsp");
 		registry.viewResolver(resolver);
 	}
+	
+	
 
 }

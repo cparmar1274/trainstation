@@ -7,11 +7,13 @@
     <title>Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel='stylesheet' type='text/css'>
 </head>
 
-<body >
+<body>
 <header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <div class="container">
   <a class="navbar-brand" href="#">Train Station</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -25,6 +27,10 @@
     </ul>
 
   </div>
+  	<form class="form-inline my-2 my-lg-0" action="/logout">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+    </form>
+    </div>
 </nav>
 </header>
 
@@ -37,43 +43,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.7.9/angular-route.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.20/filtering/row-based/range_dates.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script type="text/javascript">
-    var app = angular.module("trainStation", ["ngRoute"]).config(function($routeProvider) {
-        $routeProvider
-        .when("/", {
-            templateUrl : "/tablePage",
-            controller:"TableCtrl"
-        })
-        .when("/detail", {
-            templateUrl : "/detailPage",
-            controller:"DetailCtrl"
-        }).otherwise({
-            templateUrl : "/tablePage",
-            controller:"TableCtrl"
-        });
-    }).controller("DetailCtrl", function($scope,$routeParams,$http) {
-    	var self = this;
-    	self.stationName = $routeParams.stationName;
-    	self.stations = [];
-    	self.load = function(){
-    		 $http.get("/trainStationDetail?stationName="+self.stationName).then(function(response){
-    			 self.stations = response.data.data;
-    		 });
-    	}
-    	
-    }).controller("TableCtrl", function($scope,$http) {
-    	var self = this;
-    	self.read = function(){
-    		 /* $http.get("/read").then(function(response){
-    			 response.data.data;
-    		 }); */
-    	}
-    	
-    });
-    
-    
-</script>
+<script type="text/javascript" src="/js/app.js"></script>
 
 </html>
