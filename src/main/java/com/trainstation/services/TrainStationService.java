@@ -28,9 +28,8 @@ public class TrainStationService {
 	public Map<String, Object> getStationList(int startIndex, int pageSize, String startDate, String endDate) {
 		Map<String, Object> data = new HashMap<>();
 		int totalRecords = trainStationDetails.size();
-
 		if (!StringUtils.isEmpty(startDate) && !StringUtils.isEmpty(endDate)) {
-
+			logger.info(" date range filter applied for {} and {}", startDate, endDate);
 			List<TrainStation> dateFiltered = trainStationDetails.stream()
 					.filter(trainStation -> trainStation.getDate().after(TSUtil.getTSDate(startDate))
 							&& trainStation.getDate().before(TSUtil.getTSDate(endDate)))

@@ -24,8 +24,7 @@ public class TrainStationSecutiry extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(trainStationUserDetails)
-				.passwordEncoder(new BCryptPasswordEncoder(8, new SecureRandom()));
+		auth.userDetailsService(trainStationUserDetails).passwordEncoder(new BCryptPasswordEncoder(8, new SecureRandom()));
 	}
 
 	@Override
