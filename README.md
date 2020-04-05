@@ -1,5 +1,5 @@
 # trainstation
 trainstation
 
-#How to run
+# How to run
 mvn spring-boot:run
