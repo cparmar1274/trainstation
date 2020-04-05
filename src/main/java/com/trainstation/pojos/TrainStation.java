@@ -2,6 +2,8 @@ package com.trainstation.pojos;
 
 import java.util.Date;
 
+import org.springframework.util.StringUtils;
+
 import com.trainstation.utility.TSUtil;
 
 public class TrainStation {
@@ -18,9 +20,9 @@ public class TrainStation {
 		this.stationName = stationName;
 		this.province = province;
 		this.date = TSUtil.getTSDate(date);
-		this.meanTemp = meanTemp.isEmpty()?null:Float.valueOf(meanTemp);
-		this.highestMonthlyMaxiTemp = highestMonthlyMaxiTemp.isEmpty()?null:Float.valueOf(highestMonthlyMaxiTemp);
-		this.lowestMonthlyMinTemp = lowestMonthlyMinTemp.isEmpty()?null:Float.valueOf(lowestMonthlyMinTemp);
+		this.meanTemp = StringUtils.isEmpty(meanTemp)?null:Float.valueOf(meanTemp);
+		this.highestMonthlyMaxiTemp = StringUtils.isEmpty(highestMonthlyMaxiTemp)?null:Float.valueOf(highestMonthlyMaxiTemp);
+		this.lowestMonthlyMinTemp = StringUtils.isEmpty(lowestMonthlyMinTemp)?null:Float.valueOf(lowestMonthlyMinTemp);
 	}
 
 	public String getStationName() {
