@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 </head>
 
 <body >
@@ -15,16 +15,14 @@
 <div ng-view></div>
 
 </body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/2.1.0/angular-datatables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.7.9/angular-route.min.js"></script>
+
 
 <script type="text/javascript">
-    var app = angular.module("trainStation", ["ngRoute"]);
-    app.config(function($routeProvider) {
+    var app = angular.module("trainStation", ["ngRoute"]).config(function($routeProvider) {
         $routeProvider
         .when("/", {
             templateUrl : "/tablePage",
@@ -34,11 +32,9 @@
             templateUrl : "/detailPage",
             controller:"DetailCtrl"
         });
-    });
-    app.controller("DetailCtrl", function($scope) {
-        $scope.products = ["Milk", "Bread", "Cheese"];
-    });
-    app.controller("TableCtrl", function(DTOptionsBuilder, DTColumnBuilder) {
+    }).controller("DetailCtrl", function($scope) {
+        $scope.products = [];
+    }).controller("TableCtrl", function($scope) {
     	
     });
     
