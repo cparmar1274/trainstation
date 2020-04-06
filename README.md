@@ -12,11 +12,12 @@ Maven
 mvn test
 # How to run application
 mvn spring-boot:run
+
+Once application is up. It can be accessile via http://localhost:8080. Use below credentials to login.
+
 # Login
 Username : admin
 Password : admin
-
-Home Page: http://localhost:8080
 
 ### Validation
 1. Authentication 
