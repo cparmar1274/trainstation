@@ -23,7 +23,7 @@ class TrainStationApplicationTests {
 	@Autowired
 	private TrainStationService trainStationService;
 	
-	@DisplayName("Context load test for landingcontroller, trainstationservice and errorcontroller")
+	@DisplayName("Check context loading for LandingController,ErrorController and TrainStationService class(s)")
 	@Test
 	public void contexLoads() throws Exception {
 		assertThat(ladingController).isNotNull();
