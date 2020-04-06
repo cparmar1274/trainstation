@@ -20,7 +20,8 @@ Username : admin
 Password : admin
 
 ### Validation
-1. Authentication 
+1. Authentication using Spring Security
 2. Clientside and Serverside validation
-3. Validation for unknown url request
+3. Validation for unknown url reqeust and error(s)
 4. Exception Handling
+5. Single Page Application
