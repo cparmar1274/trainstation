@@ -1,8 +1,8 @@
 # Technologies
 ### Backend
-Java 1.8, Spring Boot 2.2.6.RELEASE, Spring MVC, Spring Security, JSP
+Java 1.8 or higher, Spring Boot 2.2.6.RELEASE, Spring MVC, Spring Security
 ### Frontend
-AngularJS,JQuery,Bootstrap,Ajax
+JSP,AngularJS,JQuery,Bootstrap,Ajax,Datatables
 ### Logging
 Log4j
 ### Build Type
@@ -19,5 +19,7 @@ Password : admin
 Home Page: http://localhost:8080
 
 ### Validation
-1. Clientside and Serverside validation
-2. Validation for unknown url request
+1. Authentication 
+2. Clientside and Serverside validation
+3. Validation for unknown url request
+4. Exception Handling
