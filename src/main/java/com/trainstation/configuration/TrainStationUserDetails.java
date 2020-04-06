@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 public class TrainStationUserDetails implements UserDetailsService {
 
 	Logger logger = LogManager.getLogger(TrainStationUserDetails.class);
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		logger.info("User {} requsted login",username);
+		logger.info("User {} requsted login", username);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(8, new SecureRandom());
 		List<? extends GrantedAuthority> authorities = new ArrayList<>();
 		return new TrainStationUser(passwordEncoder.encode("admin"), "admin", authorities, true, true, true, true,

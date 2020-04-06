@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.trainstation.services.TrainStationService;
 
+import io.micrometer.core.instrument.util.StringUtils;
+
 @Controller
 public class LandingController {
 
@@ -47,19 +49,37 @@ public class LandingController {
 	public @ResponseBody Map<String, Object> getStationList(HttpServletRequest request,
 			@RequestParam Map<String, Object> params) {
 		logger.info("station list requsted");
-		int startIndex = Integer.parseInt(params.get("start").toString());
-		int pageSize = Integer.parseInt(params.get("length").toString());
-		String startDate = params.get("startDate").toString();
-		String endDate = params.get("endDate").toString();
-		return trainStationService.getStationList(startIndex, pageSize, startDate, endDate);
+		Map<String, Object> data = new HashMap<>();
+		try {
+			int startIndex = Integer.parseInt(params.get("start").toString());
+			int pageSize = Integer.parseInt(params.get("length").toString());
+			String startDate = params.get("startDate").toString();
+			String endDate = params.get("endDate").toString();
+			data.putAll(trainStationService.getStationList(startIndex, pageSize, startDate, endDate));
+			data.put("success", true);
+			data.put("message", "train stations list received successfully");
+		} catch (Exception ex) {
+			data.put("success", false);
+			data.put("message", "error while getting train stations");
+			logger.error("error while getting train stations", ex);
+		}
+		return data;
 	}
 
 	@GetMapping("/trainStationDetail")
 	public @ResponseBody Map<String, Object> getDetailPage(HttpServletRequest request,
-			@RequestParam Map<String, Object> params) throws Exception {
+			@RequestParam Map<String, Object> params){
 		Map<String, Object> data = new HashMap<>();
 		logger.info("train station detail for {} requested.", params.get("stationName").toString());
-		data.put("data", trainStationService.getStationDetail(params.get("stationName").toString()));
+		try {
+			data.put("data", trainStationService.getStationDetail(params.get("stationName").toString()));
+			data.put("success", true);
+			data.put("message", "train station detail received successfully");
+		} catch (Exception ex) {
+			data.put("success", false);
+			data.put("message", "error while getting train station detail");
+			logger.error("error while getting train station detail", ex);
+		}
 		return data;
 	}
 

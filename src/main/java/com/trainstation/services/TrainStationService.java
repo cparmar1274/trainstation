@@ -58,7 +58,7 @@ public class TrainStationService {
 		LineIterator lineIterator;
 		try {
 			logger.info("Processing csv file to fetch trainstaion details");
-			lineIterator = FileUtils.lineIterator(new File("src/main/resources/eng-climate-summary.csv"));
+			lineIterator = FileUtils.lineIterator(new File(TSUtil.TRAIN_STATION_CSV_FILE_PATH));
 
 			trainStationDetails.clear();
 			String[] lineText = null, temp = null;
