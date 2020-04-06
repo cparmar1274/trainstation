@@ -12,7 +12,6 @@
 	<groupId>com.trainstation</groupId>
 	<artifactId>TrainStation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>TrainStation</name>
 	<description>Train Station Details</description>
 
