@@ -19,7 +19,7 @@ Once application is up. It can be accessile via http://localhost:8080. Use below
 Username : admin
 Password : admin
 
-### Validation
+### Features
 1. Authentication using Spring Security
 2. Clientside and Serverside validation
 3. Validation for unknown url reqeust and error(s)
