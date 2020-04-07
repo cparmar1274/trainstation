@@ -27,19 +27,16 @@ public class LandingController {
 
 	@GetMapping("/")
 	public ModelAndView getHomePage(HttpServletRequest request, HttpServletResponse response) {
-		logger.info("/landing page requested");
 		return new ModelAndView("landing");
 	}
 
 	@GetMapping("/tablePage")
 	public ModelAndView getTablePage(HttpServletRequest request, HttpServletResponse response) {
-		logger.info("/tablepage  requested");
 		return new ModelAndView("tablepage");
 	}
 
 	@GetMapping("/detailPage")
 	public ModelAndView getDetailPage(HttpServletRequest request, HttpServletResponse response) {
-		logger.info("/detailpage requested");
 		return new ModelAndView("detailpage");
 	}
 

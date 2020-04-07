@@ -31,6 +31,8 @@ public class TrainStationService {
 	public Map<String, Object> getStationList(int startIndex, int pageSize, String startDate, String endDate) {
 		Map<String, Object> data = new HashMap<>();
 		int totalRecords = trainStationDetails.size();
+		data.put("recordsTotal", totalRecords);
+		
 		if (!StringUtils.isEmpty(startDate) && !StringUtils.isEmpty(endDate)) {
 			logger.info(" date range filter applied for {} and {}", startDate, endDate);
 			List<TrainStation> dateFiltered = trainStationDetails.stream()
@@ -42,14 +44,12 @@ public class TrainStationService {
 			int start = startIndex >= filteredRecords ? filteredRecords : startIndex;
 			int end = (start + pageSize) >= filteredRecords ? filteredRecords : (start + pageSize);
 
-			data.put("recordsTotal", totalRecords);
 			data.put("recordsFiltered", filteredRecords);
 			data.put("data", dateFiltered.subList(start, end));
 
 		} else {
 			int start = startIndex >= totalRecords ? totalRecords : startIndex;
 			int end = (start + pageSize) >= totalRecords ? totalRecords : (start + pageSize);
-			data.put("recordsTotal", totalRecords);
 			data.put("recordsFiltered", totalRecords);
 			data.put("data", trainStationDetails.subList(start, end));
 		}
