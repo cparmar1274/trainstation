@@ -12,6 +12,7 @@ import org.apache.commons.io.LineIterator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,6 +21,7 @@ import com.trainstation.pojos.TrainStation;
 import com.trainstation.utility.TSUtil;
 
 @Service
+@EnableScheduling
 public class TrainStationService {
 
 	public static final Logger logger = LogManager.getLogger(TrainStationService.class);
@@ -58,7 +60,7 @@ public class TrainStationService {
 	/*
 	 * Ideally we should be using Spring batch but for now lets update list nighly.
 	 */
-	@Scheduled(cron = "0 0 * * *")
+	@Scheduled(cron = "0 0 * * * *")
 	public boolean readCSVFileToUpdateStationList() {
 		LineIterator lineIterator;
 		try {

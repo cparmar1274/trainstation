@@ -9,6 +9,7 @@ import com.trainstation.utility.TSUtil;
 
 public class TrainStation implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	public String stationName;
 	public String province;
 	public Date date;
