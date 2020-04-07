@@ -55,7 +55,9 @@ public class TrainStationService {
 		return data;
 	}
 
-	/* Ideally we should be using Spring batch but for now lets update list nighly.*/
+	/*
+	 * Ideally we should be using Spring batch but for now lets update list nighly.
+	 */
 	@Scheduled(cron = "0 0 * * *")
 	public boolean readCSVFileToUpdateStationList() {
 		LineIterator lineIterator;
@@ -72,7 +74,17 @@ public class TrainStationService {
 				for (int i = 0; i < lineText.length; i++) {
 					temp[i] = lineText[i];
 				}
-				trainStationDetails.add(new TrainStation(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]));
+				try {
+					trainStationDetails.add(new TrainStation(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]));
+					
+					/*
+					 * IF any record fail to parse - does not stop reading further.Skip the record. Keep note of it and Proceed.
+					 * Update the file - when cron job runs next time it will be updated.
+					 * */
+					
+				} catch (Exception ex) {
+					logger.error("Error while processing record  {}  , error message  {} ", lineText, ex.getMessage());
+				}
 			}
 			logger.info("Processing csv file completed. total {} records processed.", trainStationDetails.size());
 
