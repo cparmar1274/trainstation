@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TrainStationUserDetails implements UserDetailsService {
 
-	Logger logger = LogManager.getLogger(TrainStationUserDetails.class);
+	public static final Logger logger = LogManager.getLogger(TrainStationUserDetails.class);
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

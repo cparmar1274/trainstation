@@ -1,28 +1,35 @@
 package com.trainstation.pojos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.util.StringUtils;
 
 import com.trainstation.utility.TSUtil;
 
-public class TrainStation {
+public class TrainStation implements Serializable {
+	private static final long serialVersionUID = 1L;
 	public String stationName;
 	public String province;
 	public Date date;
 	public Float meanTemp;
 	public Float highestMonthlyMaxiTemp;
 	public Float lowestMonthlyMinTemp;
-	
+
+	public TrainStation() {
+		super();
+	}
 
 	public TrainStation(String stationName, String province, String date, String meanTemp,
-		String highestMonthlyMaxiTemp, String lowestMonthlyMinTemp) {
+			String highestMonthlyMaxiTemp, String lowestMonthlyMinTemp) {
 		this.stationName = stationName;
 		this.province = province;
 		this.date = TSUtil.getTSDate(date);
-		this.meanTemp = StringUtils.isEmpty(meanTemp)?null:Float.valueOf(meanTemp);
-		this.highestMonthlyMaxiTemp = StringUtils.isEmpty(highestMonthlyMaxiTemp)?null:Float.valueOf(highestMonthlyMaxiTemp);
-		this.lowestMonthlyMinTemp = StringUtils.isEmpty(lowestMonthlyMinTemp)?null:Float.valueOf(lowestMonthlyMinTemp);
+		this.meanTemp = StringUtils.isEmpty(meanTemp) ? null : Float.valueOf(meanTemp);
+		this.highestMonthlyMaxiTemp = StringUtils.isEmpty(highestMonthlyMaxiTemp) ? null
+				: Float.valueOf(highestMonthlyMaxiTemp);
+		this.lowestMonthlyMinTemp = StringUtils.isEmpty(lowestMonthlyMinTemp) ? null
+				: Float.valueOf(lowestMonthlyMinTemp);
 	}
 
 	public String getStationName() {

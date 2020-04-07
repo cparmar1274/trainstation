@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ErrorHandlerController implements ErrorController {
 
-	Logger logger = LogManager.getLogger(ErrorHandlerController.class);
+	public static final Logger logger = LogManager.getLogger(ErrorHandlerController.class);
 	
 	@GetMapping("/error")
 	public ModelAndView getError(HttpServletRequest request, HttpServletResponse response) {

@@ -1,6 +1,5 @@
 package com.trainstation.services;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +11,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -21,7 +22,7 @@ import com.trainstation.utility.TSUtil;
 @Service
 public class TrainStationService {
 
-	Logger logger = LogManager.getLogger(TrainStationService.class);
+	public static final Logger logger = LogManager.getLogger(TrainStationService.class);
 
 	public List<TrainStation> trainStationDetails = new ArrayList<>();
 
@@ -54,11 +55,13 @@ public class TrainStationService {
 		return data;
 	}
 
+	/* Ideally we should be using Spring batch but for now lets update list nighly.*/
+	@Scheduled(cron = "0 0 * * *")
 	public boolean readCSVFileToUpdateStationList() {
 		LineIterator lineIterator;
 		try {
 			logger.info("Processing csv file to fetch trainstaion details");
-			lineIterator = FileUtils.lineIterator(new File(TSUtil.TRAIN_STATION_CSV_FILE_PATH));
+			lineIterator = FileUtils.lineIterator(new ClassPathResource(TSUtil.TRAIN_STATION_CSV_FILE_PATH).getFile());
 
 			trainStationDetails.clear();
 			String[] lineText = null, temp = null;

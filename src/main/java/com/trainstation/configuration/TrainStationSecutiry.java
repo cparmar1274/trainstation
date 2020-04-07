@@ -31,7 +31,7 @@ public class TrainStationSecutiry extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/**").authenticated().and().formLogin().and().rememberMe();
 		
-		//processing csv file
+		//When application starts - read file and update list
 		trainStationService.readCSVFileToUpdateStationList();
 	}
 

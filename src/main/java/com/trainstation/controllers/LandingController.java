@@ -17,12 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.trainstation.services.TrainStationService;
 
-import io.micrometer.core.instrument.util.StringUtils;
-
 @Controller
 public class LandingController {
 
-	Logger logger = LogManager.getLogger(LandingController.class);
+	public static final Logger logger = LogManager.getLogger(LandingController.class);
 
 	@Autowired(required = true)
 	TrainStationService trainStationService;
