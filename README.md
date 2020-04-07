@@ -25,3 +25,4 @@ Password : admin
 3. Validation for unknown url reqeust and error(s)
 4. Exception Handling
 5. Single Page Application
+6. Read file data : on app startup and every day mid night (cron job) . Ideally we can use Spring Batch for such kind of processing.
